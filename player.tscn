@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://c1sx7bic4uhdj"]
+
+[ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://characters/happy_boo/happy_boo.tscn" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://yh2ao5or56lq" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="PackedScene" uid="uid://du5i8r7jdycua" path="res://gun.tscn" id="3_i3pqv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kymbd"]
+radius = 64.070274
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ixvil"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2o0cr"]
+bg_color = Color(0.13755062, 0.13755065, 0.13755056, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kymbd"]
+bg_color = Color(0.16470589, 0.68235296, 0.12941177, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Player" type="CharacterBody2D" unique_id=663139341]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_onrkg")
+
+[node name="HappyBoo" parent="." unique_id=1091727253 instance=ExtResource("1_4flbx")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=442781879]
+position = Vector2(-2, -38)
+scale = Vector2(0.64000154, 0.64000154)
+shape = SubResource("CircleShape2D_kymbd")
+debug_color = Color(0, 0.6357499, 0.41724107, 0.41960785)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=227401994]
+
+[node name="Gun" parent="." unique_id=1340705343 instance=ExtResource("3_i3pqv")]
+unique_name_in_owner = true
+position = Vector2(0, -13.999992)
+scale = Vector2(3.9999998, 3.9999998)
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1752501014]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1393937141]
+position = Vector2(0, -38.999996)
+scale = Vector2(7.7999988, 7.7999988)
+shape = SubResource("CircleShape2D_ixvil")
+debug_color = Color(0.74054796, 0.3843986, 0.6885498, 0.41960785)
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=493368786]
+unique_name_in_owner = true
+offset_left = -77.0
+offset_top = 52.0
+offset_right = 79.0
+offset_bottom = 79.0
+theme_override_styles/background = SubResource("StyleBoxFlat_2o0cr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kymbd")
+value = 100.0
+exp_edit = true
+show_percentage = false
