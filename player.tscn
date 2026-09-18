@@ -24,7 +24,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [node name="Player" type="CharacterBody2D" unique_id=663139341]
-collision_layer = 0
+collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_onrkg")
 
@@ -65,3 +65,13 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_kymbd")
 value = 100.0
 exp_edit = true
 show_percentage = false
+
+[node name="LevelLabel" type="Label" parent="." unique_id=1535379214]
+unique_name_in_owner = true
+offset_left = -71.0
+offset_top = 80.0
+offset_right = 75.0
+offset_bottom = 103.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Level 1"
+horizontal_alignment = 1

@@ -3,12 +3,16 @@
 [ext_resource type="Script" uid="uid://c1bfau31nfqio" path="res://survivors_game.gd" id="1_4aphc"]
 [ext_resource type="PackedScene" uid="uid://c1sx7bic4uhdj" path="res://player.tscn" id="1_cqg7p"]
 [ext_resource type="PackedScene" uid="uid://c0gpy0pye4jr6" path="res://tree.tscn" id="2_7adfw"]
+[ext_resource type="Script" uid="uid://dyrmjasetocq" path="res://danger.gd" id="4_o7l3j"]
 
 [sub_resource type="Curve2D" id="Curve2D_o7l3j"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -2003, 1394, 0, 0, 0, 0, 1783, 1546, 0, 0, 0, 0, 1791, -1117, 0, 0, 0, 0, -2015, -1078, 0, 0, 0, 0, -1992, 1381, 0, 0, 0, 0, -2003, 1394)
 }
 point_count = 6
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixvil"]
+size = Vector2(3195, 2042)
 
 [node name="Game" type="Node2D" unique_id=956512983]
 y_sort_enabled = true
@@ -35,6 +39,7 @@ position = Vector2(-293, -586)
 position = Vector2(361, 242)
 
 [node name="Player" parent="." unique_id=663139341 instance=ExtResource("1_cqg7p")]
+unique_name_in_owner = true
 
 [node name="Path2D" type="Path2D" parent="Player" unique_id=265207701]
 curve = SubResource("Curve2D_o7l3j")
@@ -55,7 +60,8 @@ offset_bottom = 1722.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="." unique_id=1427177240]
-wait_time = 0.3
+unique_name_in_owner = true
+wait_time = 0.5
 autostart = true
 
 [node name="gameover" type="CanvasLayer" parent="." unique_id=1213393162]
@@ -91,5 +97,23 @@ text = "game over"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="danger" type="Area2D" parent="." unique_id=1039279399]
+collision_mask = 9
+script = ExtResource("4_o7l3j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="danger" unique_id=850374743]
+position = Vector2(-22.5, 130)
+shape = SubResource("RectangleShape2D_ixvil")
+debug_color = Color(0.5803922, 0.54509807, 0.23921569, 1)
+
+[node name="Line2D" type="Line2D" parent="danger" unique_id=767042751]
+z_index = -1
+points = PackedVector2Array(-1613, 1144, -1627, -912, 1582, -898, 1568, 1136, -1606, 1151)
+default_color = Color(0.6862288, 0.12067955, 0.16031861, 1)
+
 [connection signal="death" from="Player" to="." method="_on_player_death"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="danger" to="Player" method="_on_danger_body_entered"]
+[connection signal="body_entered" from="danger" to="danger" method="_on_body_entered"]
+[connection signal="body_exited" from="danger" to="Player" method="_on_danger_body_exited"]
+[connection signal="body_exited" from="danger" to="danger" method="_on_body_exited"]

@@ -8,17 +8,17 @@ radius = 18.027756
 
 [node name="bullet" type="Area2D" unique_id=1006531367]
 top_level = true
-position = Vector2(-10, -57)
+position = Vector2(4, -177)
 collision_layer = 0
 collision_mask = 3
 script = ExtResource("1_v8qja")
 
 [node name="Projectile" type="Sprite2D" parent="." unique_id=247862057]
-position = Vector2(0, 56)
+position = Vector2(-8, 14)
 texture = ExtResource("2_t4vbm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1887897586]
-position = Vector2(10, 56)
+position = Vector2(4, 16)
 shape = SubResource("CircleShape2D_kymbd")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

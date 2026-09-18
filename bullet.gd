@@ -5,7 +5,7 @@ func _physics_process(delta):
 	const R = 1200
 	var direction = Vector2.RIGHT.rotated(rotation)
 	position+= direction*S *delta
-	dist = S*delta
+	dist += S*delta
 	if dist>R:
 		queue_free()
 	
